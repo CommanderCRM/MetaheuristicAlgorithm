@@ -35,18 +35,23 @@ class PenguinsColonyMerge(OptimizationAlgorithmMeta):
         movement_parameter = 1
         r = uniform()
         temperature = 0 if r > 1 else 1
-        temperature_profile = temperature - self.max_iter / (self.current_it - self.max_iter)
+        temperature_profile = temperature - \
+            self.max_iter / (self.current_it - self.max_iter)
 
         for i in range(1, self.n):
             rand = np.random.random(size=self.dimension)
-            a = movement_parameter * (temperature_profile + polygon_grid[i]) * rand - temperature_profile
+            a = movement_parameter * \
+                (temperature_profile +
+                 polygon_grid[i]) * rand - temperature_profile
 
             f = np.random.uniform(2, 3, self.dimension)
             l = np.random.uniform(1.5, 2, self.dimension)
-            social_forces = np.absolute(f * exp(-self.current_it / l) - exp(-self.current_it))
+            social_forces = np.absolute(
+                f * exp(-self.current_it / l) - exp(-self.current_it))
 
             c = np.random.random(size=self.dimension)
-            distance = np.absolute(social_forces * best_penguin - c * self._agents[i])
+            distance = np.absolute(
+                social_forces * best_penguin - c * self._agents[i])
 
             self._agents[i] = merge(self._agents[i], best_penguin)
             self._agents[i] = self.force_bounds(self._agents[i])
@@ -87,8 +92,8 @@ class PenguinsColonySigma(OptimizationAlgorithmMeta):
         r2 = np.random.uniform(0, 1, self.dimension)
 
         return (
-                (best_penguin - worst_penguin) * r1 +
-                (local_leader - worst_penguin) * r2
+            (best_penguin - worst_penguin) * r1 +
+            (local_leader - worst_penguin) * r2
         )
 
     def search(self):
@@ -97,20 +102,26 @@ class PenguinsColonySigma(OptimizationAlgorithmMeta):
         movement_parameter = 1
         r = uniform()
         temperature = 0 if r > 1 else 1
-        temperature_profile = temperature - self.max_iter / (self.current_it - self.max_iter)
+        temperature_profile = temperature - \
+            self.max_iter / (self.current_it - self.max_iter)
 
         for i in range(1, self.n):
             rand = np.random.random(size=self.dimension)
-            a = movement_parameter * (temperature_profile + polygon_grid[i]) * rand - temperature_profile
+            a = movement_parameter * \
+                (temperature_profile +
+                 polygon_grid[i]) * rand - temperature_profile
 
             f = np.random.uniform(2, 3, self.dimension)
             l = np.random.uniform(1.5, 2, self.dimension)
-            social_forces = np.absolute(f * exp(-self.current_it / l) - exp(-self.current_it))
+            social_forces = np.absolute(
+                f * exp(-self.current_it / l) - exp(-self.current_it))
 
             c = np.random.random(size=self.dimension)
-            distance = np.absolute(social_forces * best_penguin - c * self._agents[i])
+            distance = np.absolute(
+                social_forces * best_penguin - c * self._agents[i])
 
-            v = self.calculate_vll(self._agents[self.n - 1], self._agents[i], self._agents[0])
+            v = self.calculate_vll(
+                self._agents[self.n - 1], self._agents[i], self._agents[0])
             self._agents[i] = compute_binary_position(self.dimension, v)
             self._agents[i] = self.force_bounds(self._agents[i])
             self._fitness[i] = self.ff(self._agents[i])
@@ -150,8 +161,8 @@ class PenguinsColonyV(OptimizationAlgorithmMeta):
         r2 = np.random.uniform(0, 1, self.dimension)
 
         return (
-                (best_penguin - worst_penguin) * r1 +
-                (local_leader - worst_penguin) * r2
+            (best_penguin - worst_penguin) * r1 +
+            (local_leader - worst_penguin) * r2
         )
 
     def search(self):
@@ -160,20 +171,26 @@ class PenguinsColonyV(OptimizationAlgorithmMeta):
         movement_parameter = 1
         r = uniform()
         temperature = 0 if r > 1 else 1
-        temperature_profile = temperature - self.max_iter / (self.current_it - self.max_iter)
+        temperature_profile = temperature - \
+            self.max_iter / (self.current_it - self.max_iter)
 
         for i in range(1, self.n):
             rand = np.random.random(size=self.dimension)
-            a = movement_parameter * (temperature_profile + polygon_grid[i]) * rand - temperature_profile
+            a = movement_parameter * \
+                (temperature_profile +
+                 polygon_grid[i]) * rand - temperature_profile
 
             f = np.random.uniform(2, 3, self.dimension)
             l = np.random.uniform(1.5, 2, self.dimension)
-            social_forces = np.absolute(f * exp(-self.current_it / l) - exp(-self.current_it))
+            social_forces = np.absolute(
+                f * exp(-self.current_it / l) - exp(-self.current_it))
 
             c = np.random.random(size=self.dimension)
-            distance = np.absolute(social_forces * best_penguin - c * self._agents[i])
+            distance = np.absolute(
+                social_forces * best_penguin - c * self._agents[i])
 
-            v = self.calculate_vll(self._agents[self.n - 1], self._agents[i], self._agents[0])
+            v = self.calculate_vll(
+                self._agents[self.n - 1], self._agents[i], self._agents[0])
             self._agents[i] = compute_binary_position_v(self.dimension, v)
             self._agents[i] = self.force_bounds(self._agents[i])
             self._fitness[i] = self.ff(self._agents[i])
@@ -213,8 +230,8 @@ class PenguinsColonyTanh(OptimizationAlgorithmMeta):
         r2 = np.random.uniform(0, 1, self.dimension)
 
         return (
-                (best_penguin - worst_penguin) * r1 +
-                (local_leader - worst_penguin) * r2
+            (best_penguin - worst_penguin) * r1 +
+            (local_leader - worst_penguin) * r2
         )
 
     def search(self):
@@ -223,20 +240,26 @@ class PenguinsColonyTanh(OptimizationAlgorithmMeta):
         movement_parameter = 1
         r = uniform()
         temperature = 0 if r > 1 else 1
-        temperature_profile = temperature - self.max_iter / (self.current_it - self.max_iter)
+        temperature_profile = temperature - \
+            self.max_iter / (self.current_it - self.max_iter)
 
         for i in range(1, self.n):
             rand = np.random.random(size=self.dimension)
-            a = movement_parameter * (temperature_profile + polygon_grid[i]) * rand - temperature_profile
+            a = movement_parameter * \
+                (temperature_profile +
+                 polygon_grid[i]) * rand - temperature_profile
 
             f = np.random.uniform(2, 3, self.dimension)
             l = np.random.uniform(1.5, 2, self.dimension)
-            social_forces = np.absolute(f * exp(-self.current_it / l) - exp(-self.current_it))
+            social_forces = np.absolute(
+                f * exp(-self.current_it / l) - exp(-self.current_it))
 
             c = np.random.random(size=self.dimension)
-            distance = np.absolute(social_forces * best_penguin - c * self._agents[i])
+            distance = np.absolute(
+                social_forces * best_penguin - c * self._agents[i])
 
-            v = self.calculate_vll(self._agents[self.n - 1], self._agents[i], self._agents[0])
+            v = self.calculate_vll(
+                self._agents[self.n - 1], self._agents[i], self._agents[0])
             self._agents[i] = compute_binary_position_tanh(self.dimension, v)
             self._agents[i] = self.force_bounds(self._agents[i])
             self._fitness[i] = self.ff(self._agents[i])
